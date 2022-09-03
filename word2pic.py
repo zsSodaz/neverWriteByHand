@@ -1,3 +1,4 @@
+from email.policy import strict
 import random
 from PIL import ImageFont
 from PIL import Image
@@ -6,9 +7,8 @@ from PIL import ImageDraw
 
 def word2pic(txt_path='./test.txt', ttf_path="./src/test.TTF", save_path="./result/", size=4):
     font = ImageFont.truetype(ttf_path, 25)  # 设置字体
-    f = open(txt_path, 'r', encoding='utf-8')  # 设置文档
-    string = f.read()
-    f.close()
+    with open(txt_path, 'r', encoding='utf-8') as f:  # 设置文档
+        string = f.read()
     lenstr = len(string)
     page = 1
     flag = 0
